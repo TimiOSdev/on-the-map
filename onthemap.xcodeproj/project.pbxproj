@@ -58,7 +58,6 @@
 		9B0DE9F7217EEFF300646611 /* onthemap */ = {
 			isa = PBXGroup;
 			children = (
-				9B0DEA142180179500646611 /* Model */,
 				9B0DEA1221800EF200646611 /* View */,
 				9B0DEA1021800C3500646611 /* Controller */,
 				9B0DEA1121800D0100646611 /* Supporting Files */,
@@ -101,13 +100,6 @@
 				9B0DEA01217EEFF400646611 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
-			sourceTree = "<group>";
-		};
-		9B0DEA142180179500646611 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
