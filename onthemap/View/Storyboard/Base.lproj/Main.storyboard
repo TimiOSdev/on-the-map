@@ -26,6 +26,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Udacity_logo" translatesAutoresizingMaskIntoConstraints="NO" id="0Zd-MI-1rx">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
                                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="2YL-LK-ttW"/>
                                                     <constraint firstAttribute="width" constant="200" id="nRY-TX-mSO"/>
@@ -64,7 +65,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="VMI-7H-Pdh">
-                                        <rect key="frame" x="67.333333333333343" y="328" width="279.66666666666663" height="20.333333333333314"/>
+                                        <rect key="frame" x="68.333333333333343" y="328" width="277.66666666666663" height="20.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQF-h7-26u">
                                                 <rect key="frame" x="0.0" y="0.0" width="203.66666666666666" height="20.333333333333332"/>
@@ -73,9 +74,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAm-RH-PHo">
-                                                <rect key="frame" x="210.66666666666669" y="0.0" width="69" height="20.333333333333332"/>
+                                                <rect key="frame" x="210.66666666666669" y="0.0" width="67" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="Sign up">
+                                                <state key="normal" title="sign up">
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
