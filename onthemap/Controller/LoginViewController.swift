@@ -22,11 +22,11 @@ class LoginViewController: HomeBaseController {
   
   @IBAction func goLogin(_ sender: Any) {
     guard let myEmail = _Email.text, !myEmail.isEmpty else {
-      showAlert(nil, message: "Empty Email Address please resolve this")
+      showAlert(nil, message: "Empty Email! please resolve this")
       return
     }
     guard let myPassword = _Password.text, !myPassword.isEmpty else {
-      showAlert(nil, message: "Empty Password Address please resolve this")
+      showAlert(nil, message: "Empty Password! please resolve this")
       return
     }
   }
