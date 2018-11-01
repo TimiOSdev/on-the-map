@@ -8,30 +8,48 @@
 
 import UIKit
 
-class LoginViewController: HomeBaseController {
-
+class LoginViewController: UIViewController {
+    
     // MARK: Properties
     
-  @IBOutlet weak var _Email: UITextField!
-  @IBOutlet weak var _Password: UITextField!
-  @IBOutlet weak var _LoginButton: UIButton!
-  
-  override func viewDidLoad() {
+    @IBOutlet weak var _Email: UITextField!
+    @IBOutlet weak var _Password: UITextField!
+    @IBOutlet weak var _LoginButton: UIButton!
+    @IBOutlet weak var surpriseText: UILabel!
+    
+    var session: URLSession!
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-  
-  @IBAction func goLogin(_ sender: Any) {
-    guard let myEmail = _Email.text, !myEmail.isEmpty else {
-      showAlert(nil, message: "Empty Email! please resolve this")
-      return
+    
+    @IBAction func goLogin(_ sender: Any) {
+        UdacityParseClient.sharedInstance().Login(userName: _Email.text!, password: _Password.text!)
+        { (success, error) in
+            performUIUpdatesOnMain {
+                if success! {
+                    self.loginComplete()
+                } else {
+                    self.displayError(error)
+                }
+            }
+        }
+    
+    
+}
+    func loginComplete() {
+        surpriseText.text = ""
+        let controller = storyboard!.instantiateViewController(withIdentifier: "PinMapController") as! UITabBarController
+        present(controller, animated: true, completion: nil)
     }
-    guard let myPassword = _Password.text, !myPassword.isEmpty else {
-      showAlert(nil, message: "Empty Password! please resolve this")
-      return
+    
+    
+    func displayError(_ errorString: String?) {
+        if let errorString = errorString {
+            surpriseText.text = errorString
+        }
     }
-  }
-
 
 }

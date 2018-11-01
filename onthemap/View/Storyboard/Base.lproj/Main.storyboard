@@ -65,7 +65,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="VMI-7H-Pdh">
-                                        <rect key="frame" x="68.333333333333343" y="328" width="277.66666666666663" height="20.333333333333314"/>
+                                        <rect key="frame" x="105.33333333333333" y="328" width="203.66666666666669" height="20.333333333333314"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQF-h7-26u">
                                                 <rect key="frame" x="0.0" y="0.0" width="203.66666666666666" height="20.333333333333332"/>
@@ -73,13 +73,6 @@
                                                 <color key="textColor" red="0.0036531654186546803" green="0.47139710187911987" blue="0.59887021780014038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAm-RH-PHo">
-                                                <rect key="frame" x="210.66666666666669" y="0.0" width="67" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="sign up">
-                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -98,6 +91,7 @@
                         <outlet property="_Email" destination="ok2-YN-YCt" id="vev-gE-fxZ"/>
                         <outlet property="_LoginButton" destination="JxK-qP-fix" id="MFc-SH-JQS"/>
                         <outlet property="_Password" destination="Ush-MM-Iyw" id="PdT-Lb-Epc"/>
+                        <outlet property="surpriseText" destination="zQF-h7-26u" id="NxE-5S-nAf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,7 +117,7 @@
         <!--Item 1-->
         <scene sceneID="ZfC-8p-l88">
             <objects>
-                <viewController id="6k7-Xt-Gzm" sceneMemberID="viewController">
+                <viewController id="6k7-Xt-Gzm" customClass="PinMapController" customModule="onthemap" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fgp-21-4u7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,7 +133,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="VDo-eM-jZf">
             <objects>
-                <tabBarController id="ShB-uh-e0E" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="PinMapController" id="ShB-uh-e0E" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bG4-O2-SPD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
