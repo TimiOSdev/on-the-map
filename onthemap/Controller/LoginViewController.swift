@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: HomeBaseController {
 
+    // MARK: Properties
+    
   @IBOutlet weak var _Email: UITextField!
   @IBOutlet weak var _Password: UITextField!
   @IBOutlet weak var _LoginButton: UIButton!
@@ -30,17 +32,6 @@ class LoginViewController: HomeBaseController {
       return
     }
   }
-  
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
