@@ -9,8 +9,8 @@
 import UIKit
 import MapKit
 import CoreLocation
-//MARK: GLOBAL VARIABLES
-var isEditing = false
+
+
 class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     
     var lat:Double?
@@ -23,6 +23,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: CONNECTION OUTLETS
 
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -35,35 +36,43 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         configureLocationServices()
     }
     override func viewWillAppear(_ animated: Bool) {
-        
+        infoLabel.text = "LOADING"
         super.viewWillAppear(animated)
-        addHoldTap()
-        self.navigationItem.rightBarButtonItem?.title = "Edit"
-    }
-    //MARK: ADD and DELETE Pin and functions
-    func addHoldTap() {
-        
-        //Long gesture will drop the pin
-        let singleHold = UILongPressGestureRecognizer(target: self, action: #selector(dropPin(sender:)))
-        singleHold.minimumPressDuration = 0.8
-        singleHold.delaysTouchesBegan = true
-        singleHold.delegate = self
-        mapView.addGestureRecognizer(singleHold)
-    }
+        UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
+            guard let self = self else { return }
+            guard let students = students else {
+                self.infoLabel.text = "Failed to Load"
+                
+                return
+            }
+            for student in students {
+                print(students.count)
+                performUIUpdatesOnMain {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
+                    annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
+                    annotation.title = student.mediaURL ?? ""
+                    
+                    self.mapView.addAnnotation(annotation)
+                    self.mapView.reloadInputViews()
+                }
+                  self.infoLabel.text = "LOADED Student Successful"
 
-    
+            }
+          
+            }
+        self.navigationItem.leftBarButtonItem?.title = "LogOut"
+        self.navigationItem.rightBarButtonItem?.title = "Edit"
+        }
+
+
+
+
     ////////////////////////////////////////////////////////////////////////////
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // If selection and not true it will move to PhotoAlbumViewController
-        if isEditing == true {
-            selectedPin = mapView.selectedAnnotations.first
-//            pinRemovalOn(selectedPin)
-            mapView.removeAnnotation(selectedPin!)
-            
-        }else {
-            lat = view.annotation?.coordinate.latitude
-            long = view.annotation?.coordinate.longitude
-            performSegue(withIdentifier: "toPhoto", sender: self)
+        if let infoPin = view.annotation?.title {
+            print(infoPin)
         }
         
     }

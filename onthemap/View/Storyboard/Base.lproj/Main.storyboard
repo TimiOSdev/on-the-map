@@ -123,26 +123,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-dK-xQ2">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="70" width="414" height="743"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-0E-BbB">
+                                <rect key="frame" x="0.0" y="47" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zeQ-GS-d8R" firstAttribute="trailing" secondItem="uWK-dK-xQ2" secondAttribute="trailing" id="Khu-ht-yzw"/>
                             <constraint firstItem="uWK-dK-xQ2" firstAttribute="leading" secondItem="zeQ-GS-d8R" secondAttribute="leading" id="N23-7N-2Vv"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="3" id="XKw-kE-odd"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="zeQ-GS-d8R" secondAttribute="leading" id="gtq-mW-fSb"/>
                             <constraint firstItem="zeQ-GS-d8R" firstAttribute="bottom" secondItem="uWK-dK-xQ2" secondAttribute="bottom" id="oRO-xM-fHv"/>
-                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" id="pHn-KV-tyz"/>
+                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="26" id="pHn-KV-tyz"/>
+                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="trailing" secondItem="v3u-0E-BbB" secondAttribute="trailing" id="wJX-c0-Mps"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zeQ-GS-d8R"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="t25-Qp-hwg"/>
                     <connections>
+                        <outlet property="infoLabel" destination="v3u-0E-BbB" id="HhF-WX-bXa"/>
                         <outlet property="mapView" destination="uWK-dK-xQ2" id="RIa-uA-rLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZz-iI-iFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1340" y="-199"/>
+            <point key="canvasLocation" x="1339.1304347826087" y="-199.55357142857142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="VDo-eM-jZf">
