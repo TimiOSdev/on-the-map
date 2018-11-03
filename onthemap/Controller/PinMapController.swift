@@ -20,6 +20,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 10000
     var selectedPin:MKAnnotation?
+    var studentInformation: [StudentInformation] = []
     
     //MARK: CONNECTION OUTLETS
 
@@ -39,14 +40,18 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         infoLabel.text = "LOADING"
         super.viewWillAppear(animated)
         UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
+            if students == nil {
+                self?.infoLabel.text = "Failure to load"
+                return
+            }
             guard let self = self else { return }
             guard let students = students else {
                 self.infoLabel.text = "Failed to Load"
-                
+
                 return
             }
             for student in students {
-                print(students.count)
+                self.studentInformation.append(contentsOf: [student])
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
@@ -56,13 +61,15 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.addAnnotation(annotation)
                     self.mapView.reloadInputViews()
                 }
-                  self.infoLabel.text = "LOADED Student Successful"
+                  self.infoLabel.text = "Successful"
 
             }
-          
+            print(self.studentInformation)
+            print(self.studentInformation)
             }
         self.navigationItem.leftBarButtonItem?.title = "LogOut"
         self.navigationItem.rightBarButtonItem?.title = "Edit"
+        infoLabel.text = ""
         }
 
 
@@ -71,20 +78,17 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     ////////////////////////////////////////////////////////////////////////////
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         // If selection and not true it will move to PhotoAlbumViewController
-        if let infoPin = view.annotation?.title {
-            print(infoPin)
+        if let url = URL(string: (((view.annotation?.title)!) ?? "https://www.google.com")) {
+            UIApplication.shared.open(url, options: [:])
         }
         
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPhoto" {
-//            let destinationVC = segue.destination as! PhotoAlbumViewController
-//            destinationVC.lat = lat!
-//            destinationVC.long = long!
-//            destinationVC.dataController = self.dataController
-        }
-    }
 
+
+    @IBAction func logOut(_ sender: Any) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") as! UIViewController
+        present(controller, animated: true, completion: nil)
+    }
     
 }
 extension PinMapController: MKMapViewDelegate{

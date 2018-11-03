@@ -32,7 +32,7 @@ extension UdacityParseClient {
         }
     }
     
-    func getStudentLocations(_ completionHandlerForLocations: @escaping (_ result: [StudentLocation]?, _ error: NSError?) -> Void) {
+    func getStudentLocations(_ completionHandlerForLocations: @escaping (_ result: [StudentInformation]?, _ error: NSError?) -> Void) {
         
         /*  set relevant URL for requesting location data*/
         let pinDisplayRequest: String = "https://parse.udacity.com/parse/classes/StudentLocation"
@@ -47,7 +47,7 @@ extension UdacityParseClient {
                 
                 if let result = result?[UdacityParseClient.JSONResponseKeys.Results] as? [[String:AnyObject]] {
                     
-                    let locations = StudentLocation.locationsFromResults(result)
+                    let locations = StudentInformation.locationsFromResults(result)
                     completionHandlerForLocations(locations, nil)
                 } else {
                     completionHandlerForLocations(nil, NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations"]))

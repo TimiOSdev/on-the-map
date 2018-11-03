@@ -8,7 +8,7 @@
 
 import MapKit
 
-struct StudentLocation {
+struct StudentInformation {
     
     let createdAt: String?
     let firstName: String?
@@ -38,12 +38,12 @@ struct StudentLocation {
     
     
     
-    static func locationsFromResults(_ results: [[String:AnyObject]]) -> [StudentLocation] {
+    static func locationsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
         
-        var students = [StudentLocation]()
+        var students = [StudentInformation]()
         
         for result in results {
-            students.append(StudentLocation(result))
+            students.append(StudentInformation(result))
         }
         
         return students
