@@ -80,7 +80,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 
         if let url = URL(string: (((view.annotation?.title)!) ?? "https://www.google.com")) {
-            UIApplication.shared.open(url, options: [:])
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
         
     }

@@ -47,4 +47,11 @@ class TableVC: UITableViewController {
         
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let urlString = self.studentInfo[indexPath.row].mediaURL
+        if let url = URL(string: urlString!)
+        {
+UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }    }
 }
+
