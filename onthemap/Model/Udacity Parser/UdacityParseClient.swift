@@ -149,10 +149,52 @@ class UdacityParseClient : NSObject {
     
     
     
+    //Note from Phuc Tran: send request to delete current session on server upon logout.
+    func taskForDELETELogoutMethod() {
+        
+        //Build URL, Configure request
+        let request = NSMutableURLRequest(url: URL(string: UdacityParseClient.Constants.AuthorizationURL)!)
+        request.httpMethod = "DELETE"
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            
+            if cookie.name == "XSRF-TOKEN" {  xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        //Make the request
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil {
+                return
+            }
+            
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                print("Your request returned a status code other than 2XX.")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data was returned by the request.")
+                return
+            }
+            
+            let range = Range(5..<data.count)
+            let newData = data.subdata(in: range)
+            print(String(data: newData, encoding: .utf8)!)
+            
+            print("User has successfully logged out")
+
+        }
+        
+        task.resume()
+    }
     
     
-    
-    
+
     
     
     

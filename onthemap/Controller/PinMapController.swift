@@ -88,11 +88,11 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBAction func logOut(_ sender: Any) {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow")
+       UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
+
+        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") 
         present(controller, animated: true, completion: nil)
-    }
-
-
+}
 }
 
 extension PinMapController: MKMapViewDelegate{
@@ -141,3 +141,4 @@ extension PinMapController: CLLocationManagerDelegate {
         centerMapOnUserLocation()
     }
 }
+
