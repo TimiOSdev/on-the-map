@@ -23,7 +23,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     var studentInformation: [StudentInformation] = []
     
     //MARK: CONNECTION OUTLETS
-
+    
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
@@ -35,9 +35,9 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         mapView.delegate = self
         locationManager.delegate = self
         configureLocationServices()
+
     }
     override func viewWillAppear(_ animated: Bool) {
-        infoLabel.text = "LOADING"
         super.viewWillAppear(animated)
         UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
             if students == nil {
@@ -47,12 +47,13 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             guard let self = self else { return }
             guard let students = students else {
                 self.infoLabel.text = "Failed to Load"
-
+                
                 return
             }
             for student in students {
                 self.studentInformation.append(contentsOf: [student])
                 performUIUpdatesOnMain {
+                    self.infoLabel.text = "Loading"
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
                     annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
@@ -61,36 +62,38 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.addAnnotation(annotation)
                     self.mapView.reloadInputViews()
                 }
-                  self.infoLabel.text = "Successful"
-
             }
-            print(self.studentInformation)
-            print(self.studentInformation)
-            }
+            let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
+            secondTab.studentInfo = self.studentInformation
+            
+        }
         self.navigationItem.leftBarButtonItem?.title = "LogOut"
         self.navigationItem.rightBarButtonItem?.title = "Edit"
         infoLabel.text = ""
-        }
 
+    }
 
-
-
+    
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // If selection and not true it will move to PhotoAlbumViewController
+
         if let url = URL(string: (((view.annotation?.title)!) ?? "https://www.google.com")) {
             UIApplication.shared.open(url, options: [:])
         }
         
     }
-
-
+    
+    
     @IBAction func logOut(_ sender: Any) {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") as! UIViewController
+        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow")
         present(controller, animated: true, completion: nil)
     }
-    
+
+
 }
+
 extension PinMapController: MKMapViewDelegate{
     //This will center users on the map
     func centerMapOnUserLocation() {
@@ -116,7 +119,7 @@ extension PinMapController: MKMapViewDelegate{
         }
         
     }
-
+    
 }
 extension PinMapController: CLLocationManagerDelegate {
     func configureLocationServices() {

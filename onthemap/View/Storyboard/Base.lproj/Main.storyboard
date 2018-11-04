@@ -111,33 +111,41 @@
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-0E-BbB">
                                 <rect key="frame" x="0.0" y="47" width="414" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="fYQ-If-OWH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WO-e4-V0O">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WO-e4-V0O">
                                 <rect key="frame" x="35" y="42" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logOut:" destination="6k7-Xt-Gzm" eventType="touchUpInside" id="vX2-nL-GM5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynp-cp-zWZ">
-                                <rect key="frame" x="336" y="42" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ynp-cp-zWZ">
+                                <rect key="frame" x="345" y="42" width="53" height="30"/>
+                                <state key="normal" title="Add Pin"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="trailing" secondItem="uWK-dK-xQ2" secondAttribute="trailing" id="Khu-ht-yzw"/>
-                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="leading" secondItem="zeQ-GS-d8R" secondAttribute="leading" id="N23-7N-2Vv"/>
-                            <constraint firstItem="v3u-0E-BbB" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="3" id="XKw-kE-odd"/>
-                            <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="zeQ-GS-d8R" secondAttribute="leading" id="gtq-mW-fSb"/>
-                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="bottom" secondItem="uWK-dK-xQ2" secondAttribute="bottom" id="oRO-xM-fHv"/>
-                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="26" id="pHn-KV-tyz"/>
-                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="trailing" secondItem="v3u-0E-BbB" secondAttribute="trailing" id="wJX-c0-Mps"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="uWK-dK-xQ2" secondAttribute="leading" id="1NO-23-Zup"/>
+                            <constraint firstItem="0WO-e4-V0O" firstAttribute="top" secondItem="ynp-cp-zWZ" secondAttribute="top" id="65O-cH-SDO"/>
+                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="bottom" secondItem="zeQ-GS-d8R" secondAttribute="bottom" id="8DN-qS-gR8"/>
+                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="bottom" secondItem="0WO-e4-V0O" secondAttribute="bottom" constant="741" id="F0E-0Z-Ci1"/>
+                            <constraint firstItem="zeQ-GS-d8R" firstAttribute="trailing" secondItem="ynp-cp-zWZ" secondAttribute="trailing" constant="16" id="Mxc-a6-jb4"/>
+                            <constraint firstAttribute="trailing" secondItem="v3u-0E-BbB" secondAttribute="trailing" id="NqX-ez-6b2"/>
+                            <constraint firstItem="0WO-e4-V0O" firstAttribute="baseline" secondItem="ynp-cp-zWZ" secondAttribute="firstBaseline" id="O5m-I4-75F"/>
+                            <constraint firstItem="0WO-e4-V0O" firstAttribute="leading" secondItem="zeQ-GS-d8R" secondAttribute="leading" constant="35" id="OvA-2x-ZrO"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="trailing" secondItem="uWK-dK-xQ2" secondAttribute="trailing" id="VIr-CZ-DYM"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="fgp-21-4u7" secondAttribute="leading" id="bzD-2B-9xJ"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="centerY" secondItem="ynp-cp-zWZ" secondAttribute="centerY" id="du3-Q0-NWY"/>
+                            <constraint firstItem="v3u-0E-BbB" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="3" id="gHQ-ad-UhV"/>
+                            <constraint firstItem="ynp-cp-zWZ" firstAttribute="baseline" secondItem="0WO-e4-V0O" secondAttribute="firstBaseline" id="mFg-lN-UiK"/>
+                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="v3u-0E-BbB" secondAttribute="bottom" constant="2" id="u89-aD-sfE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zeQ-GS-d8R"/>
                     </view>
@@ -196,7 +204,7 @@
             </objects>
             <point key="canvasLocation" x="386" y="133"/>
         </scene>
-        <!--Item-->
+        <!--Table-->
         <scene sceneID="B2H-1w-uAV">
             <objects>
                 <tableViewController id="3rt-fB-Ead" customClass="TableVC" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,11 +227,11 @@
                             <outlet property="delegate" destination="3rt-fB-Ead" id="OJv-9R-fVZ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="x6z-EP-33T"/>
+                    <tabBarItem key="tabBarItem" title="Table" id="x6z-EP-33T"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zba-6O-AHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433" y="478"/>
+            <point key="canvasLocation" x="1339" y="646"/>
         </scene>
     </scenes>
     <resources>
