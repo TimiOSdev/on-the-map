@@ -41,16 +41,17 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
             if students == nil {
-                self?.infoLabel.text = "Failure to load"
+                self?.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
                 return
             }
             guard let self = self else { return }
             guard let students = students else {
-                self.infoLabel.text = "Failed to Load"
                 
                 return
             }
+
             for student in students {
+
                 self.studentInformation.append(contentsOf: [student])
                 performUIUpdatesOnMain {
                     self.infoLabel.text = "Loading"
@@ -63,13 +64,13 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.reloadInputViews()
                 }
             }
+            self.infoLabel.text = "Done"
             let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
             secondTab.studentInfo = self.studentInformation
             
         }
         self.navigationItem.leftBarButtonItem?.title = "LogOut"
         self.navigationItem.rightBarButtonItem?.title = "Edit"
-        infoLabel.text = ""
 
     }
 
@@ -118,6 +119,12 @@ extension PinMapController: MKMapViewDelegate{
             
         }
         
+    }
+    
+    func showAlert(problem: String, solution: String)  {
+        let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }

@@ -106,10 +106,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-dK-xQ2">
-                                <rect key="frame" x="0.0" y="176" width="414" height="682"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uWK-dK-xQ2">
+                                <rect key="frame" x="0.0" y="120" width="414" height="738"/>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-0E-BbB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-0E-BbB">
                                 <rect key="frame" x="0.0" y="91" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="fYQ-If-OWH"/>
@@ -122,12 +122,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="uWK-dK-xQ2" secondAttribute="leading" id="1NO-23-Zup"/>
-                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="bottom" secondItem="zeQ-GS-d8R" secondAttribute="bottom" id="8DN-qS-gR8"/>
+                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="bottom" secondItem="zeQ-GS-d8R" secondAttribute="bottom" constant="45" id="8DN-qS-gR8"/>
                             <constraint firstAttribute="trailing" secondItem="v3u-0E-BbB" secondAttribute="trailing" id="NqX-ez-6b2"/>
                             <constraint firstItem="v3u-0E-BbB" firstAttribute="trailing" secondItem="uWK-dK-xQ2" secondAttribute="trailing" id="VIr-CZ-DYM"/>
                             <constraint firstItem="v3u-0E-BbB" firstAttribute="leading" secondItem="fgp-21-4u7" secondAttribute="leading" id="bzD-2B-9xJ"/>
                             <constraint firstItem="v3u-0E-BbB" firstAttribute="top" secondItem="zeQ-GS-d8R" secondAttribute="top" constant="3" id="gHQ-ad-UhV"/>
-                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="v3u-0E-BbB" secondAttribute="bottom" constant="2" id="u89-aD-sfE"/>
+                            <constraint firstItem="uWK-dK-xQ2" firstAttribute="top" secondItem="v3u-0E-BbB" secondAttribute="bottom" constant="8" id="u89-aD-sfE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zeQ-GS-d8R"/>
                     </view>
