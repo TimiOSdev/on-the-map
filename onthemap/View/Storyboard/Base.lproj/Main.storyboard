@@ -147,25 +147,26 @@
                                 <rect key="frame" x="341" y="0.0" width="53" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Pin"/>
+                                <connections>
+                                    <action selector="addPin:" destination="6k7-Xt-Gzm" eventType="touchUpInside" id="Efo-mm-xp5"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="t4H-Zl-ljO" kind="show" id="Qp5-j7-56H"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="infoLabel" destination="v3u-0E-BbB" id="HhF-WX-bXa"/>
                         <outlet property="mapView" destination="uWK-dK-xQ2" id="RIa-uA-rLU"/>
+                        <segue destination="t4H-Zl-ljO" kind="show" identifier="toPinMake" id="HQt-mZ-lx5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rZz-iI-iFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2249.275362318841" y="-199.55357142857142"/>
         </scene>
-        <!--View Controller-->
+        <!--MakeA PinVC-->
         <scene sceneID="xJV-nQ-kjc">
             <objects>
-                <viewController id="t4H-Zl-ljO" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="getInfo" id="t4H-Zl-ljO" customClass="MakeAPinVC" customModule="onthemap" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6n4-q7-Bae">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,15 +188,18 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvb-MW-wKm">
                                 <rect key="frame" x="184" y="343" width="46" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="qzM-tm-AKv" kind="show" id="7Jp-yy-U51"/>
+                                    <action selector="toFinalPinVC:" destination="t4H-Zl-ljO" eventType="touchUpInside" id="9cb-wp-0KU"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xG8-dR-Odz"/>
                     </view>
+                    <connections>
+                        <segue destination="qzM-tm-AKv" kind="show" identifier="toConfirmPin" id="Oq9-IN-7lK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wuh-lc-5ZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,22 +252,51 @@
             </objects>
             <point key="canvasLocation" x="1339" y="646"/>
         </scene>
-        <!--View Controller-->
+        <!--PostVC-->
         <scene sceneID="her-es-oyZ">
             <objects>
-                <viewController id="qzM-tm-AKv" sceneMemberID="viewController">
+                <viewController id="qzM-tm-AKv" customClass="PostVC" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Cc-Ww-H9T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Does this look good?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOq-HD-jqJ">
+                                <rect key="frame" x="137" y="395" width="161" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What URL would you like to share?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P9-gY-HH8">
+                                <rect key="frame" x="75" y="438" width="264" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please include https://" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sUn-ZH-HjA">
+                                <rect key="frame" x="111" y="467" width="212" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="79X-w9-1t3">
-                                <rect key="frame" x="0.0" y="131" width="434" height="245"/>
+                                <rect key="frame" x="0.0" y="131" width="414" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orL-L7-E76">
+                                <rect key="frame" x="183" y="527" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0pc-yk-Rdl"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="79X-w9-1t3" id="cb8-og-ysm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hms-wF-KPX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

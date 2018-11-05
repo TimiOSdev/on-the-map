@@ -1,30 +1,31 @@
 //
-//  PinMapController.swift
+//  PostVC.swift
 //  onthemap
 //
-//  Created by Tim McEwan on 11/1/18.
+//  Created by Tim McEwan on 11/4/18.
 //  Copyright © 2018 sudo. All rights reserved.
 //
 
 import UIKit
+
 import MapKit
 import CoreLocation
 
 
-class PinMapController: UIViewController, UIGestureRecognizerDelegate {
+class PostVC: UIViewController, UIGestureRecognizerDelegate {
     
     var lat:Double?
     var long: Double?
     var creationDate: Date?
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
-    let regionRadius: Double = 10000
+    let regionRadius: Double = 1000000
     var selectedPin:MKAnnotation?
     var studentInformation: [StudentInformation] = []
     
     //MARK: CONNECTION OUTLETS
     
-    @IBOutlet weak var infoLabel: UILabel!
+
     @IBOutlet weak var mapView: MKMapView!
     
     
@@ -39,63 +40,13 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
-            if students == nil {
-                self?.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
-                return
-            }
-            guard let self = self else { return }
-            guard let students = students else {
-                
-                return
-            }
-
-            for student in students {
-
-                self.studentInformation.append(contentsOf: [student])
-                performUIUpdatesOnMain {
-                    self.infoLabel.text = "Loading"
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
-                    annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
-                    annotation.title = student.mediaURL ?? ""
-                    
-                    self.mapView.addAnnotation(annotation)
-                    self.mapView.reloadInputViews()
-                }
-            }
-            self.infoLabel.text = "Done"
-            let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
-            secondTab.studentInfo = self.studentInformation
-            
-        }
-        self.navigationItem.leftBarButtonItem?.title = "LogOut"
-        self.navigationItem.rightBarButtonItem?.title = "Edit"
-
-    }
-
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-
-        if let url = URL(string: (((view.annotation?.title)!) ?? "https://www.google.com")) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
         
     }
-
-    @IBAction func addPin(_ sender: Any) {
-        performSegue(withIdentifier: "toPinMake", sender: self)
-    }
     
-    
-    @IBAction func logOut(_ sender: Any) {
-       UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
 
-        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") 
-        present(controller, animated: true, completion: nil)
-}
 }
 
-extension PinMapController: MKMapViewDelegate{
+extension PostVC: MKMapViewDelegate{
     //This will center users on the map
     func centerMapOnUserLocation() {
         
@@ -128,7 +79,7 @@ extension PinMapController: MKMapViewDelegate{
     }
     
 }
-extension PinMapController: CLLocationManagerDelegate {
+extension PostVC: CLLocationManagerDelegate {
     func configureLocationServices() {
         
         if authorizationStatus == .notDetermined {
@@ -141,4 +92,3 @@ extension PinMapController: CLLocationManagerDelegate {
         centerMapOnUserLocation()
     }
 }
-
