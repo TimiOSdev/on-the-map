@@ -27,7 +27,9 @@ class MakeAPinVC: UIViewController {
             }
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        locationText.text = ""
+    }
     //MARK: Actions
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {

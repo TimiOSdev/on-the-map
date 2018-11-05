@@ -132,6 +132,7 @@
                         <viewLayoutGuide key="safeArea" id="zeQ-GS-d8R"/>
                     </view>
                     <navigationItem key="navigationItem" id="Elc-pX-htE">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="hhe-oS-SRr"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="lhz-rp-Xgv">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0WO-e4-V0O">
                                 <rect key="frame" x="20" y="0.0" width="48" height="44"/>

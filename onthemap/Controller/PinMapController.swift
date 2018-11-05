@@ -54,7 +54,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
 
                 self.studentInformation.append(contentsOf: [student])
                 performUIUpdatesOnMain {
-                    self.infoLabel.text = "Loading"
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
                     annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
@@ -64,7 +63,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.reloadInputViews()
                 }
             }
-            self.infoLabel.text = "Done"
             let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
             secondTab.studentInfo = self.studentInformation
             
