@@ -24,7 +24,7 @@ class TableVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        print(self.studentInfo)
+
     }
 
     // MARK: - Table view data source
@@ -48,8 +48,8 @@ class TableVC: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let urlString = self.studentInfo[indexPath.row].mediaURL
-        if let url = URL(string: urlString!)
+        guard let string = self.studentInfo[indexPath.row].mediaURL else { return }
+        if let url = URL(string: string)
         {
 UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }    }

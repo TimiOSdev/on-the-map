@@ -89,7 +89,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func logOut(_ sender: Any) {
        UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
-
         let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") 
         present(controller, animated: true, completion: nil)
 }

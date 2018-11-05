@@ -48,20 +48,12 @@ struct StudentInformation {
         
         return students
     }
+    
+    struct NewUserLocation {
+        static var mapString = ""
+        static var mediaURL = ""
+        static var latitude = 0.0
+        static var longitude = 0.0
+    }
 
 }
-//MARK: Global variable
-
-var arrayOfStudentLocations = [StudentInformation]()
-
-
-
-
-
-
-
-
-
-
-
-//

@@ -34,9 +34,22 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         
         super.viewDidLoad()
         mapView.delegate = self
-        locationManager.delegate = self
-        configureLocationServices()
-        
+//        locationManager.delegate = self
+//        configureLocationServices()
+        if let thisLat = self.lat {
+            print(thisLat)
+            lat = thisLat
+        }
+        if let thisLong = self.long {
+            long = thisLong
+            print(thisLong)
+        }
+      let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat ?? 0.00, longitude: long ?? 0.00)
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+        let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,12 +61,12 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
 
 extension PostVC: MKMapViewDelegate{
     //This will center users on the map
-    func centerMapOnUserLocation() {
-        
-        guard let coordinate = locationManager.location?.coordinate else { return }
-        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
+//    func centerMapOnUserLocation() {
+//
+//        guard let coordinate = locationManager.location?.coordinate else { return }
+//        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
+//        mapView.setRegion(coordinateRegion, animated: true)
+//    }
     //MARK: OBJC objects
     @objc func dropPin(sender: UITapGestureRecognizer) {
         //Drop pin on the map
@@ -79,16 +92,4 @@ extension PostVC: MKMapViewDelegate{
     }
     
 }
-extension PostVC: CLLocationManagerDelegate {
-    func configureLocationServices() {
-        
-        if authorizationStatus == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        } else {
-            return
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        centerMapOnUserLocation()
-    }
-}
+

@@ -142,11 +142,11 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="8Uf-gn-6H6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ynp-cp-zWZ">
-                                <rect key="frame" x="341" y="0.0" width="53" height="44"/>
+                        <barButtonItem key="rightBarButtonItem" image="icon_addpin" style="plain" id="8Uf-gn-6H6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ynp-cp-zWZ">
+                                <rect key="frame" x="370" y="10" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add Pin"/>
+                                <state key="normal" image="icon_addpin"/>
                                 <connections>
                                     <action selector="addPin:" destination="6k7-Xt-Gzm" eventType="touchUpInside" id="Efo-mm-xp5"/>
                                 </connections>
@@ -190,7 +190,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="toFinalPinVC:" destination="t4H-Zl-ljO" eventType="touchUpInside" id="9cb-wp-0KU"/>
+                                    <action selector="findLocationButtonTapped:" destination="t4H-Zl-ljO" eventType="touchUpInside" id="grD-RG-gBu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -198,6 +198,7 @@
                         <viewLayoutGuide key="safeArea" id="xG8-dR-Odz"/>
                     </view>
                     <connections>
+                        <outlet property="locationText" destination="Z1R-vo-345" id="lej-9B-axa"/>
                         <segue destination="qzM-tm-AKv" kind="show" identifier="toConfirmPin" id="Oq9-IN-7lK"/>
                     </connections>
                 </viewController>
@@ -246,7 +247,7 @@
                             <outlet property="delegate" destination="3rt-fB-Ead" id="OJv-9R-fVZ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table" id="x6z-EP-33T"/>
+                    <tabBarItem key="tabBarItem" title="Table" image="icon_listview-selected" selectedImage="icon_listview-selected" id="x6z-EP-33T"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zba-6O-AHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -255,7 +256,7 @@
         <!--PostVC-->
         <scene sceneID="her-es-oyZ">
             <objects>
-                <viewController id="qzM-tm-AKv" customClass="PostVC" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="toConfirmPin" id="qzM-tm-AKv" customClass="PostVC" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Cc-Ww-H9T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,7 +307,7 @@
         <scene sceneID="13N-2B-oK8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mq4-Jj-q4b" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="t25-Qp-hwg"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="icon_mapview-selected" selectedImage="icon_mapview-selected" id="t25-Qp-hwg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lYt-h3-nTo">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -324,5 +325,8 @@
     </scenes>
     <resources>
         <image name="Udacity_logo" width="2400" height="1260"/>
+        <image name="icon_addpin" width="24" height="24"/>
+        <image name="icon_listview-selected" width="75" height="50"/>
+        <image name="icon_mapview-selected" width="75" height="50"/>
     </resources>
 </document>
