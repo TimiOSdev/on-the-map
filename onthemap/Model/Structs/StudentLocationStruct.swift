@@ -17,7 +17,7 @@ struct StudentInformation {
     let longitude: Double?
     let mapString: String?
     let mediaURL: String?
-    let objectId: String?
+    let objectId : String?
     let uniqueKey: String?
     let updatedAt: String?
     
@@ -36,7 +36,16 @@ struct StudentInformation {
         
     }
     
-    
+    struct UserData {
+        static var uniqueKey = UdacityParseClient.StudentLocationItem.uniqueKey
+        static var firstName = UdacityParseClient.StudentLocationItem.firstName
+        static var lastName = UdacityParseClient.StudentLocationItem.lastName
+        static var objectId = ""
+        static var latitude = 0.0
+        static var longitude = 0.0
+        static var mapString = ""
+        static var mediaURL = ""
+    }
     
     static func locationsFromResults(_ results: [[String:AnyObject]]) -> [StudentInformation] {
         
@@ -54,6 +63,9 @@ struct StudentInformation {
         static var mediaURL = ""
         static var latitude = 0.0
         static var longitude = 0.0
+        static var objectId = ""
     }
+    
+    
 
 }

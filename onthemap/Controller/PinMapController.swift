@@ -39,37 +39,32 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UdacityParseClient.sharedInstance().getStudentLocations {[weak self] (students, error) in
+
+        UdacityParseClient.sharedInstance().getStudentLocations { (students, error) in
             if students == nil {
-                self?.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
+                self.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
                 return
             }
-            guard let self = self else { return }
             guard let students = students else {
-                
                 return
             }
-
+            
             for student in students {
-
+                
                 self.studentInformation.append(contentsOf: [student])
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
                     annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
                     annotation.title = student.mediaURL ?? ""
-                    
                     self.mapView.addAnnotation(annotation)
-                    self.mapView.reloadInputViews()
                 }
             }
             let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
             secondTab.studentInfo = self.studentInformation
             
         }
-        self.navigationItem.leftBarButtonItem?.title = "LogOut"
-        self.navigationItem.rightBarButtonItem?.title = "Edit"
-
+    
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -122,6 +117,12 @@ extension PinMapController: MKMapViewDelegate{
         let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+
+    
+    func refresh() {
+
+        
     }
     
 }

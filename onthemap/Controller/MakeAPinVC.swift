@@ -10,10 +10,9 @@ import MapKit
 
 class MakeAPinVC: UIViewController {
     
-    //MARK: Outlets
-    
     @IBOutlet weak var locationText: UITextField!
-
+    
+    // Variables
     var newLocation = ""
     var newURL = ""
     var newLatitude = 0.0
@@ -30,7 +29,7 @@ class MakeAPinVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         locationText.text = ""
     }
-    //MARK: Actions
+    
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         locationText.text = ""
@@ -38,35 +37,22 @@ class MakeAPinVC: UIViewController {
     }
     
     @IBAction func findLocationButtonTapped(_ sender: UIButton) {
+        
         guard let location = locationText.text, location != "" else {
             //TODO : make an alert for Error message
             return
         }
-   
         
-//        guard let url = enterURLTextField.text, url != "", url.hasPrefix("https://") else {
-//            print("URL is empty")
-//            //TODO:  Create Alert for error message
-//            return
-//        }
-        
-//        self.disableUI()
-//
         StudentInformation.NewUserLocation.mapString = location
         newLocation = location
-//        StudentInformation.NewUserLocation.mediaURL = url
-//        newURL = url
-        
         getCoordinatesFromLocation(location: newLocation)
     }
     
     //MARK: Methods
     
     func getCoordinatesFromLocation(location: String) {
-        print("getCoordinatesOfLocation called")
         
         let geocoder = CLGeocoder()
-        
         geocoder.geocodeAddressString(location) {
             (placemarks, error) in
             // No internet connection
@@ -80,30 +66,24 @@ class MakeAPinVC: UIViewController {
             
             let placemark = placemarks?.first
             
-            guard let placemarkLatitude = placemark?.location?.coordinate.latitude else {
+            guard let geoLatitude = placemark?.location?.coordinate.latitude else {
                 print("Could not calculate latitude coordinate from geocodeAddressString")
-               //Could not calculate location
                 return
             }
             
-            StudentInformation.NewUserLocation.latitude = placemarkLatitude
+            StudentInformation.NewUserLocation.latitude = geoLatitude
             
-            guard let placemarkLongitude = placemark?.location?.coordinate.longitude else {
+            guard let geoLongitude = placemark?.location?.coordinate.longitude else {
                 print("Could not calculate longitude coordinate from geocodeAdressString")
                 return
             }
             
-            StudentInformation.NewUserLocation.longitude = placemarkLongitude
-//
-            print("geCoordinatesOfLocation: Lat: \(StudentInformation.NewUserLocation.latitude), Lon: \(StudentInformation.NewUserLocation.longitude)")
-            
-            print("Call passDataToNextViewController")
+            StudentInformation.NewUserLocation.longitude = geoLongitude
             self.passDataToNextViewController()
         }
     }
     
     func passDataToNextViewController() {
-        print("Confirmed")
         
         performUIUpdatesOnMain {
             let addLocationMapVC = self.storyboard?.instantiateViewController(withIdentifier: "toConfirmPin") as! PostVC

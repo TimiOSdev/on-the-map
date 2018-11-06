@@ -38,7 +38,7 @@ extension UdacityParseClient {
         let pinDisplayRequest: String = "https://parse.udacity.com/parse/classes/StudentLocation"
         
         /* Make request */
-        let _ = taskForGETtingData(pinDisplayRequest) { (result, error) in
+        let _ = getTheData(pinDisplayRequest) { (result, error) in
             
             /* Send data to the completion handler */
             if let error = error {
@@ -52,6 +52,31 @@ extension UdacityParseClient {
                 } else {
                     completionHandlerForLocations(nil, NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations"]))
                 }
+            }
+        }
+    }
+    
+    //MARK: POST Convenience Methods
+    func postAStudentLocation(newUserMapString: String, newUserMediaURL: String, newUserLatitude: Double, newUserLongitude: Double, completionHandlerForLocationPOST: @escaping (_ success:Bool, _ error:String) -> Void) {
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        
+        // backslash before the double quote you want to insert in the String
+        let jsonBody = "{\"uniqueKey\": \"\(StudentInformation.UserData.uniqueKey)\", \"firstName\": \"\(StudentInformation.UserData.firstName)\", \"lastName\": \"\(StudentInformation.UserData.lastName)\",\"mapString\":  \"\(newUserMapString)\", \"mediaURL\": \"\(newUserMediaURL)\",\"latitude\": \(newUserLatitude), \"longitude\":  \(newUserLongitude)}"
+        
+        print("jsonBody for POST: \(jsonBody)")
+        
+        /* 2. Make the request */
+        let _ = taskForPOSTAStudentLocation(jsonBody: jsonBody) { (results, error) in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandlerForLocationPOST(false, "Error: Could not POST new user location")
+                print(error)
+                
+                print("POST Error?: \(error)")
+            } else {
+                completionHandlerForLocationPOST(true, "Successful POST")
             }
         }
     }
