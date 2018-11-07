@@ -74,12 +74,19 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
             callPostToStudentLocation()
             let controller = storyboard!.instantiateViewController(withIdentifier: "PinMapController") 
             present(controller, animated: true, completion: nil)
+        } else {
+            self.showAlert(problem: "Failed", solution: "Failed to post user info")
         }
     }
-    
+    func showAlert(problem: String, solution: String)  {
+        let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     //MARK: Methods
     func callPostToStudentLocation() {
         UdacityParseClient.sharedInstance().postAStudentLocation(newUserMapString: self.newLocation, newUserMediaURL: shareURLTextOutlet.text ?? "http://www.google.com", newUserLatitude: self.lat ?? 0.00, newUserLongitude: self.long ?? 0.00) { (success, errorString) in
+print(success)
 }
 }
 }

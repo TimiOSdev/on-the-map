@@ -144,9 +144,7 @@ class UdacityParseClient : NSObject {
     }
     
     
-    
-    
-    //Note from Phuc Tran: send request to delete current session on server upon logout.
+    //Phuc Tran: send request to delete current session on server upon logout.
     func taskForDELETELogoutMethod() {
         
         //Build URL, Configure request
@@ -213,7 +211,6 @@ class UdacityParseClient : NSObject {
                 return
             }
             
-            /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 sendError("Your request returned a status code other than 2xx!")
                 return

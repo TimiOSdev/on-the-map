@@ -33,9 +33,7 @@ extension UdacityParseClient {
         static let StatusMessage = "status_message"
         static let StatusCode = "status_code"
         static let Results = "results"
-        
-        
-        
+    
         // MARK: Students
         static let FirstName = "firstName"
         static let LastName = "lastName"

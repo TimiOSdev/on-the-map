@@ -113,7 +113,7 @@ extension PinMapController: MKMapViewDelegate{
         
     }
     
-    func showAlert(problem: String, solution: String)  {
+  public func showAlert(problem: String, solution: String)  {
         let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
         self.present(alert, animated: true)

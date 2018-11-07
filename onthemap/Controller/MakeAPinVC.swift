@@ -61,26 +61,32 @@ class MakeAPinVC: UIViewController {
             guard (error == nil) else {
                 print("Print Error: \(String(describing: error!.localizedDescription))")
                 //Create an alert for connection and error
+                self.showAlert(problem: "Yikes", solution: "Please check your internet connection")
                 return
             }
             
             let placemark = placemarks?.first
-            
             guard let geoLatitude = placemark?.location?.coordinate.latitude else {
-                print("Could not calculate latitude coordinate from geocodeAddressString")
+                self.showAlert(problem: "Shoot", solution: "Could not calculate geocode")
                 return
             }
             
             StudentInformation.NewUserLocation.latitude = geoLatitude
             
             guard let geoLongitude = placemark?.location?.coordinate.longitude else {
-                print("Could not calculate longitude coordinate from geocodeAdressString")
+                self.showAlert(problem: "Shoot", solution: "Could not calculate geocode")
                 return
             }
             
             StudentInformation.NewUserLocation.longitude = geoLongitude
             self.passDataToNextViewController()
         }
+    }
+    
+     func showAlert(problem: String, solution: String)  {
+        let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     func passDataToNextViewController() {
