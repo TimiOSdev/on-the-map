@@ -9,15 +9,10 @@
 import UIKit
 
 class TableVC: UITableViewController {
-    var studentInfo: [StudentInformation] = []
+var studentInfo: [StudentInformation] = []
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     // MARK: - Table view data source
@@ -46,5 +41,19 @@ class TableVC: UITableViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    @IBAction func loggingOut(_ sender: Any) {
+        UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
+        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow")
+        present(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func addPin(_ sender: Any) {
+        let controller = storyboard!.instantiateViewController(withIdentifier: "getInfo")
+        present(controller, animated: true, completion: nil)
+        
+    }
+    
+
+    
 }
 

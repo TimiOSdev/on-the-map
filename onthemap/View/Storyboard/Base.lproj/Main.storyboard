@@ -223,14 +223,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="Mq4-Jj-q4b" kind="relationship" relationship="viewControllers" id="YRJ-PV-hGP"/>
-                        <segue destination="3rt-fB-Ead" kind="relationship" relationship="viewControllers" id="P6p-FN-fXW"/>
+                        <segue destination="yZF-aH-dC9" kind="relationship" relationship="viewControllers" id="P6p-FN-fXW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fr2-EC-J4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="386" y="133"/>
         </scene>
-        <!--Table-->
+        <!--TableVC-->
         <scene sceneID="B2H-1w-uAV">
             <objects>
                 <tableViewController id="3rt-fB-Ead" customClass="TableVC" customModule="onthemap" customModuleProvider="target" sceneMemberID="viewController">
@@ -253,11 +253,22 @@
                             <outlet property="delegate" destination="3rt-fB-Ead" id="OJv-9R-fVZ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Table" image="icon_listview-selected" selectedImage="icon_listview-selected" id="x6z-EP-33T"/>
+                    <navigationItem key="navigationItem" id="3J8-DO-5qB">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="iLr-T1-URj">
+                            <connections>
+                                <action selector="loggingOut:" destination="3rt-fB-Ead" id="q0o-PB-GUn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icon_pin" id="Rqk-ut-oXb">
+                            <connections>
+                                <action selector="addPin:" destination="3rt-fB-Ead" id="j6h-An-sL6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zba-6O-AHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1339" y="646"/>
+            <point key="canvasLocation" x="2247.826086956522" y="645.53571428571422"/>
         </scene>
         <!--PostVC-->
         <scene sceneID="her-es-oyZ">
@@ -278,14 +289,6 @@
                                 <rect key="frame" x="0.0" y="129" width="414" height="247"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orL-L7-E76">
-                                <rect key="frame" x="183" y="527" width="49" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="finishButtonTapped:" destination="qzM-tm-AKv" eventType="touchUpInside" id="0j0-25-0a7"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDl-QC-qJL">
                                 <rect key="frame" x="75" y="384" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -293,48 +296,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-uw-EqA">
-                                <rect key="frame" x="111" y="413" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What is your first and last name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qV-0a-Bqy">
-                                <rect key="frame" x="75" y="384" width="249" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Z6-iT-fde">
-                                <rect key="frame" x="228" y="413" width="77" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What URL would you like to share?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P9-gY-HH8">
-                                <rect key="frame" x="75" y="460" width="264" height="21"/>
+                                <rect key="frame" x="75" y="392" width="264" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please include https://" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sUn-ZH-HjA">
-                                <rect key="frame" x="111" y="489" width="212" height="30"/>
+                                <rect key="frame" x="101" y="433" width="212" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orL-L7-E76">
+                                <rect key="frame" x="183" y="471" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="finishButtonTapped:" destination="qzM-tm-AKv" eventType="touchUpInside" id="0j0-25-0a7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0pc-yk-Rdl"/>
                     </view>
                     <connections>
-                        <outlet property="firstNameTextOut" destination="BFb-uw-EqA" id="sMg-SU-hz8"/>
-                        <outlet property="lastNameTextOut" destination="1Z6-iT-fde" id="1Ae-Oz-9l8"/>
                         <outlet property="mapView" destination="79X-w9-1t3" id="cb8-og-ysm"/>
                         <outlet property="shareURLTextOutlet" destination="sUn-ZH-HjA" id="Ymm-Qm-7Hn"/>
                     </connections>
@@ -362,12 +350,32 @@
             </objects>
             <point key="canvasLocation" x="1339.1304347826087" y="-199.55357142857142"/>
         </scene>
+        <!--Table-->
+        <scene sceneID="pPD-rO-X9e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yZF-aH-dC9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Table" image="icon_listview-selected" selectedImage="icon_listview-selected" id="x6z-EP-33T"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FV6-ra-7Z9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3rt-fB-Ead" kind="relationship" relationship="rootViewController" id="QRE-jL-Vny"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bet-rD-dIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337.68115942029" y="645.53571428571422"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Udacity_logo" width="2400" height="1260"/>
         <image name="icon_addpin" width="24" height="24"/>
         <image name="icon_listview-selected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
+        <image name="icon_pin" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="loading" width="46" height="46"/>
     </resources>
