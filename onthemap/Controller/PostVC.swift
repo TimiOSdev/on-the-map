@@ -86,7 +86,8 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     //MARK: Methods
     func callPostToStudentLocation() {
         UdacityParseClient.sharedInstance().postAStudentLocation(newUserMapString: self.newLocation, newUserMediaURL: shareURLTextOutlet.text ?? "http://www.google.com", newUserLatitude: self.lat ?? 0.00, newUserLongitude: self.long ?? 0.00) { (success, errorString) in
-print(success)
-}
-}
+        }
+          
+        }
+    
 }
