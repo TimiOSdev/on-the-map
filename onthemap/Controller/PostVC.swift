@@ -13,8 +13,6 @@ import CoreLocation
 
 class PostVC: UIViewController, UIGestureRecognizerDelegate {
     //Outlets
-    @IBOutlet weak var firstNameTextOut: UITextField!
-    @IBOutlet weak var lastNameTextOut: UITextField!
     @IBOutlet weak var shareURLTextOutlet: UITextField!
     
     var lat:Double?
@@ -67,8 +65,6 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: Actions
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-        StudentInformation.UserData.firstName = firstNameTextOut.text ?? "JOE"
-        StudentInformation.UserData.lastName = lastNameTextOut.text ?? "COOL"
         //Get Student's Data
         if userObjectId.isEmpty {
             callPostToStudentLocation()

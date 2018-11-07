@@ -60,8 +60,8 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.addAnnotation(annotation)
                 }
             }
-            let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
-            secondTab.studentInfo = self.studentInformation
+//            let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
+//            secondTab.studentInfo = self.studentInformation
             
         }
     

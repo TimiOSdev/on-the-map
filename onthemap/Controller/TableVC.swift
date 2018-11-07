@@ -48,8 +48,7 @@ var studentInfo: [StudentInformation] = []
     }
     
     @IBAction func addPin(_ sender: Any) {
-        let controller = storyboard!.instantiateViewController(withIdentifier: "getInfo")
-        present(controller, animated: true, completion: nil)
+ performSegue(withIdentifier: "toPinMake", sender: self)
         
     }
     

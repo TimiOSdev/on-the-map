@@ -262,6 +262,7 @@
                         <barButtonItem key="rightBarButtonItem" image="icon_pin" id="Rqk-ut-oXb">
                             <connections>
                                 <action selector="addPin:" destination="3rt-fB-Ead" id="j6h-An-sL6"/>
+                                <segue destination="t4H-Zl-ljO" kind="show" id="6PN-u3-1hd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -379,4 +380,7 @@
         <image name="icon_world" width="52" height="67"/>
         <image name="loading" width="46" height="46"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="6PN-u3-1hd"/>
+    </inferredMetricsTieBreakers>
 </document>
