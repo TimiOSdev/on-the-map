@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		225AF796218FEA32004826DC /* MakeAPinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AF795218FEA32004826DC /* MakeAPinVC.swift */; };
 		225AF798219016EA004826DC /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225AF797219016EA004826DC /* PostVC.swift */; };
+		2271F3F621936F2100FD9256 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271F3F521936F2100FD9256 /* Spinner.swift */; };
 		22925024218D252700E2E3E0 /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22925023218D252700E2E3E0 /* TableVC.swift */; };
 		22AE3F96218B903B00B9E0B9 /* UdacityParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE3F95218B903B00B9E0B9 /* UdacityParseClient.swift */; };
 		22AE3F98218B906000B9E0B9 /* UdacityParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AE3F97218B906000B9E0B9 /* UdacityParseConstants.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		225AF795218FEA32004826DC /* MakeAPinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeAPinVC.swift; sourceTree = "<group>"; };
 		225AF797219016EA004826DC /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		2271F3F521936F2100FD9256 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		22925023218D252700E2E3E0 /* TableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
 		22AE3F95218B903B00B9E0B9 /* UdacityParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityParseClient.swift; sourceTree = "<group>"; };
 		22AE3F97218B906000B9E0B9 /* UdacityParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityParseConstants.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				22AE3F9C218B90E400B9E0B9 /* Structs */,
 				22AE3F99218B907D00B9E0B9 /* Udacity Parser */,
+				2271F3F521936F2100FD9256 /* Spinner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				22AE3F9E218B910C00B9E0B9 /* StudentLocationStruct.swift in Sources */,
 				22AE3F98218B906000B9E0B9 /* UdacityParseConstants.swift in Sources */,
 				225AF798219016EA004826DC /* PostVC.swift in Sources */,
+				2271F3F621936F2100FD9256 /* Spinner.swift in Sources */,
 				225AF796218FEA32004826DC /* MakeAPinVC.swift in Sources */,
 				22AE3FA0218B944700B9E0B9 /* PinMapController.swift in Sources */,
 				9B0DE9F9217EEFF300646611 /* AppDelegate.swift in Sources */,
