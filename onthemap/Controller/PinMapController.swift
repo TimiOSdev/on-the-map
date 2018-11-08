@@ -42,8 +42,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             }
             
             for student in students {
-                
-                self.studentInformation.append(contentsOf: [student])
+                StudentDataFarm.sharedInstance.arrayOfStudentLocations.append(student)
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
@@ -52,9 +51,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                     self.mapView.addAnnotation(annotation)
                 }
             }
-//                        let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
-//                        secondTab.studentInfo = self.studentInformation
-            
         }
         
         
