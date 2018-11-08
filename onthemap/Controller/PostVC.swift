@@ -20,7 +20,6 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     var newLocation = StudentInformation.NewUserLocation.mapString
     var newURL = StudentInformation.NewUserLocation.mediaURL
     var userObjectId = StudentInformation.NewUserLocation.mediaURL
-    var studentInformation: [StudentInformation] = []
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -39,14 +38,14 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
             print(thisLong)
         }
         
-      let annotation = MKPointAnnotation()
+        let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: lat ?? 0.00, longitude: long ?? 0.00)
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         view.addGestureRecognizer(tap)
-
+        
     }
     
     func userNewLocationData() -> [[String : Any]] {
@@ -71,8 +70,9 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         //Get Student's Data
         if userObjectId.isEmpty {
             callPostToStudentLocation()
-            let controller = storyboard!.instantiateViewController(withIdentifier: "PinMapController") 
-            present(controller, animated: true, completion: nil)
+            if let navController = self.navigationController {
+                navController.popViewController(animated: true)
+            }
         } else {
             self.showAlert(problem: "Failed", solution: "Failed to post user info")
         }
@@ -86,8 +86,8 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     func callPostToStudentLocation() {
         UdacityParseClient.sharedInstance().postAStudentLocation(newUserMapString: self.newLocation, newUserMediaURL: shareURLTextOutlet.text ?? "http://www.google.com", newUserLatitude: self.lat ?? 0.00, newUserLongitude: self.long ?? 0.00) { (success, errorString) in
         }
-          
-        }
+        
+    }
     func dismissKeyboard() {
         
         view.endEditing(true)

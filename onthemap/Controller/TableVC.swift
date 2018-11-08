@@ -9,12 +9,13 @@
 import UIKit
 
 class TableVC: UITableViewController {
-var studentInfo: [StudentInformation] = []
+    let studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+
+        
     }
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -24,18 +25,18 @@ var studentInfo: [StudentInformation] = []
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return studentInfo.count
+        return studentLocations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        print("DATE -\(studentInfo[indexPath.row].createdAt ?? "NO DATE")")
-        cell.textLabel?.text = "\(studentInfo[indexPath.row].firstName ?? "NO") \(studentInfo[indexPath.row].lastName ?? "Name")  \(studentInfo[indexPath.row].mediaURL ?? "Empty URL")"
+        print("DATE -\(studentLocations[indexPath.row].createdAt ?? "NO DATE")")
+        cell.textLabel?.text = "\(studentLocations[indexPath.row].firstName ?? "NO") \(studentLocations[indexPath.row].lastName ?? "Name")  \(studentLocations[indexPath.row].mediaURL ?? "Empty URL")"
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let string = self.studentInfo[indexPath.row].mediaURL else { return }
+        guard let string = self.studentLocations[indexPath.row].mediaURL else { return }
         if let url = URL(string: string)
         {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -52,6 +53,7 @@ var studentInfo: [StudentInformation] = []
         
     }
     
+
 
     
 }

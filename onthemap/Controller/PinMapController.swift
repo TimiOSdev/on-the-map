@@ -20,7 +20,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 10000
     var selectedPin:MKAnnotation?
-    var studentInformation: [StudentInformation] = []
+    var studentInformation: [StudentInformation] = arrayOfStudentLocations
     
     //MARK: CONNECTION OUTLETS
     
@@ -32,14 +32,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        mapView.delegate = self
-        locationManager.delegate = self
-        configureLocationServices()
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
         UdacityParseClient.sharedInstance().getStudentLocations { (students, error) in
             if students == nil {
                 self.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
@@ -55,35 +47,66 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
-                    annotation.subtitle = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
-                    annotation.title = student.mediaURL ?? ""
+                    annotation.title = "\(student.firstName ?? "JOE") \(student.lastName ?? "Cool")"
+                    annotation.subtitle = student.mediaURL ?? ""
                     self.mapView.addAnnotation(annotation)
                 }
             }
-//            let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
-//            secondTab.studentInfo = self.studentInformation
+//                        let secondTab = self.tabBarController?.viewControllers?[1] as! TableVC
+//                        secondTab.studentInfo = self.studentInformation
             
         }
-    
+        
+        
+        mapView.delegate = self
+        locationManager.delegate = self
+        configureLocationServices()
+        
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
 
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-
-        if let url = URL(string: (((view.annotation?.title)!) ?? "https://www.google.com")) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
         
     }
 
-    @IBAction func addPin(_ sender: Any) {
-        performSegue(withIdentifier: "toPinMake", sender: self)
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        if annotation is MKUserLocation {return nil}
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+            let calloutButton = UIButton(type: .detailDisclosure)
+            pinView!.rightCalloutAccessoryView = calloutButton
+            pinView!.sizeToFit()
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        
+        return pinView
     }
-    
-    
-    @IBAction func logOut(_ sender: Any) {
-       UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
-        let controller = storyboard!.instantiateViewController(withIdentifier: "loginNow") 
-        present(controller, animated: true, completion: nil)
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+
+        }
+    }
+
+
+@IBAction func addPin(_ sender: Any) {
+    performSegue(withIdentifier: "toPinMake", sender: self)
+}
+
+
+@IBAction func logOut(_ sender: Any) {
+    UdacityParseClient.sharedInstance().taskForDELETELogoutMethod()
+    dismiss(animated: true, completion: nil)
 }
 }
 
@@ -113,19 +136,13 @@ extension PinMapController: MKMapViewDelegate{
         
     }
     
-  public func showAlert(problem: String, solution: String)  {
+    public func showAlert(problem: String, solution: String)  {
         let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
-
-    
-    func refresh() {
-
-        
-    }
-    
 }
+
 extension PinMapController: CLLocationManagerDelegate {
     func configureLocationServices() {
         

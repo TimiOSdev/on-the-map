@@ -7,6 +7,7 @@
 //
 
 import MapKit
+import Foundation
 
 struct StudentInformation {
     
@@ -37,6 +38,8 @@ struct StudentInformation {
     }
     
     struct UserData {
+        
+        
         static var uniqueKey = UdacityParseClient.StudentLocationItem.uniqueKey
         static var firstName = UdacityParseClient.StudentLocationItem.firstName
         static var lastName = UdacityParseClient.StudentLocationItem.lastName
@@ -65,7 +68,5 @@ struct StudentInformation {
         static var longitude = 0.0
         static var objectId = ""
     }
-    
-    
-
 }
+var arrayOfStudentLocations = [StudentInformation]() 

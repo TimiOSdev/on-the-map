@@ -46,7 +46,7 @@ extension UdacityParseClient {
             } else {
                 
                 if let result = result?[UdacityParseClient.JSONResponseKeys.Results] as? [[String:AnyObject]] {
-                    
+                    StudentDataFarm.sharedInstance.arrayOfStudentLocations = StudentInformation.locationsFromResults(result)
                     let locations = StudentInformation.locationsFromResults(result)
                     completionHandlerForLocations(locations, nil)
                 } else {

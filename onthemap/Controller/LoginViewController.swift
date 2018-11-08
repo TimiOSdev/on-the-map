@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     
     func displayError(_ errorString: String?) {
         if let errorString = errorString {
-            surpriseText.text = errorString
+            surpriseText.text = "Credentials failed"
         }
     }
 
