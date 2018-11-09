@@ -28,7 +28,7 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        
         if let thisLat = self.lat {
             print(thisLat)
             lat = thisLat
@@ -44,7 +44,6 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
-        view.addGestureRecognizer(tap)
         
     }
     
@@ -52,8 +51,8 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         return [
             [
                 "createdAt" : "",
-                "firstName" : StudentInformation.UserData.firstName,
-                "lastName" : StudentInformation.UserData.lastName,
+                "firstName" : "",
+                "lastName" : "",
                 "latitude" : StudentInformation.NewUserLocation.latitude,
                 "longitude" : StudentInformation.NewUserLocation.longitude,
                 "mapString" : StudentInformation.NewUserLocation.mapString,
