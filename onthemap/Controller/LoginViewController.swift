@@ -42,7 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-}
+    }
     func loginComplete() {
         surpriseText.text = ""
         let controller = storyboard!.instantiateViewController(withIdentifier: "PinMapController") as! UITabBarController

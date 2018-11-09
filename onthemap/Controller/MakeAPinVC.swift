@@ -28,7 +28,7 @@ class MakeAPinVC: UIViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         locationText.text = ""
-       
+        
     }
     
     override func viewDidLoad() {
@@ -128,5 +128,5 @@ class MakeAPinVC: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return true
     }
-
+    
 }

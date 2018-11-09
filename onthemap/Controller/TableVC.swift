@@ -29,7 +29,7 @@ class TableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
+        
         return StudentDataFarm.sharedInstance.arrayOfStudentLocations.count
     }
     
@@ -56,10 +56,10 @@ class TableVC: UITableViewController {
     }
     
     @IBAction func addPin(_ sender: Any) {
- performSegue(withIdentifier: "toPinMake", sender: self)
+        performSegue(withIdentifier: "toPinMake", sender: self)
         
     }
-
+    
     public func showAlert(problem: String, solution: String)  {
         let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
