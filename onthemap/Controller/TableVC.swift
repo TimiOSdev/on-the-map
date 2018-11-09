@@ -9,7 +9,7 @@
 import UIKit
 
 class TableVC: UITableViewController {
-    let studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
+    var studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         

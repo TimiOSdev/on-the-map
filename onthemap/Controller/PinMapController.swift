@@ -12,7 +12,7 @@ import CoreLocation
 
 
 class PinMapController: UIViewController, UIGestureRecognizerDelegate {
-    
+    var studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
     var lat:Double?
     var long: Double?
     var creationDate: Date?
@@ -39,9 +39,9 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             guard let students = students else {
                 return
             }
-            
+            self.studentLocations.append(contentsOf: students)
             for student in students {
-        
+//                self.studentLocations.append(student)
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
@@ -109,23 +109,6 @@ extension PinMapController: MKMapViewDelegate{
         guard let coordinate = locationManager.location?.coordinate else { return }
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: regionRadius * 2.0, longitudinalMeters: regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
-    }
-    //MARK: OBJC objects
-    @objc func dropPin(sender: UITapGestureRecognizer) {
-        //Drop pin on the map
-        if isEditing == false {
-            if sender.state == UIGestureRecognizer.State.began {
-                let annotation = MKPointAnnotation()
-                let touchPoint = sender.location(in: mapView)
-                print(touchPoint)
-                let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-                print("This is the map gps coordinate\(touchCoordinate)")
-                annotation.coordinate = CLLocationCoordinate2D(latitude: touchCoordinate.latitude , longitude: touchCoordinate.longitude)
-                mapView.addAnnotation(annotation)
-            }
-            
-        }
-        
     }
     
     public func showAlert(problem: String, solution: String)  {
