@@ -39,9 +39,10 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             guard let students = students else {
                 return
             }
-            self.studentLocations.append(contentsOf: students)
-            for student in students {
+            self.studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
+            for student in StudentDataFarm.sharedInstance.arrayOfStudentLocations {
 //                self.studentLocations.append(student)
+                print(students)
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
@@ -56,11 +57,9 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         configureLocationServices()
         
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-
-        
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?

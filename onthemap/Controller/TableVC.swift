@@ -9,7 +9,7 @@
 import UIKit
 
 class TableVC: UITableViewController {
-    var studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
@@ -25,10 +25,11 @@ class TableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return studentLocations.count
+        return StudentDataFarm.sharedInstance.arrayOfStudentLocations.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         print("DATE -\(studentLocations[indexPath.row].createdAt ?? "NO DATE")")
         cell.textLabel?.text = "\(studentLocations[indexPath.row].firstName ?? "NO") \(studentLocations[indexPath.row].lastName ?? "Name")  \(studentLocations[indexPath.row].mediaURL ?? "Empty URL")"
@@ -36,7 +37,8 @@ class TableVC: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let string = self.studentLocations[indexPath.row].mediaURL else { return }
+        let studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
+        guard let string = studentLocations[indexPath.row].mediaURL else { return }
         if let url = URL(string: string)
         {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
