@@ -11,13 +11,16 @@ import UIKit
 class TableVC: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-
-        var studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
+        UdacityParseClient.sharedInstance().getStudentLocations { (students, error) in
+            if students == nil {
+                self.showAlert(problem: "Failure to load table", solution: "Please make sure WiFi or internet is on")
+                return
+            }
+            guard let students = students else {
+                return
+            }
+        }
     }
-    
-    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,9 +59,11 @@ class TableVC: UITableViewController {
  performSegue(withIdentifier: "toPinMake", sender: self)
         
     }
-    
 
-
-    
+    public func showAlert(problem: String, solution: String)  {
+        let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
 
