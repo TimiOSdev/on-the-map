@@ -31,6 +31,16 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        mapView.delegate = self
+        locationManager.delegate = self
+        configureLocationServices()
+        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         UdacityParseClient.sharedInstance().getStudentLocations { (students, error) in
             if students == nil {
                 self.showAlert(problem: "Failure to load pins", solution: "Please make sure WiFi or internet is on")
@@ -41,7 +51,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             }
             self.studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
             for student in StudentDataFarm.sharedInstance.arrayOfStudentLocations {
-//                self.studentLocations.append(student)
+                //                self.studentLocations.append(student)
                 print(students)
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
@@ -52,14 +62,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                 }
             }
         }
-        mapView.delegate = self
-        locationManager.delegate = self
-        configureLocationServices()
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?

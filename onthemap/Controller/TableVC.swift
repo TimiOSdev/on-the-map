@@ -14,8 +14,10 @@ class TableVC: UITableViewController {
         super.viewWillAppear(true)
         
 
-        
+        var studentLocations = StudentDataFarm.sharedInstance.arrayOfStudentLocations
     }
+    
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

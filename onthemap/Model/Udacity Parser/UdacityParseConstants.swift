@@ -28,18 +28,19 @@ extension UdacityParseClient {
     
     // MARK: JSON Response Keys
     struct JSONResponseKeys {
+        static let ObjectId: String = "objectId"
+        static let UniqueKey: String = "uniqueKey"
+        static let FirstName: String = "firstName"
+        static let LastName: String = "lastName"
         
-        // MARK: General
-        static let StatusMessage = "status_message"
-        static let StatusCode = "status_code"
-        static let Results = "results"
-    
-        // MARK: Students
-        static let FirstName = "firstName"
-        static let LastName = "lastName"
-        static let MediaURL = "mediaURL"
-        static let Latitude = "latitude"
-        static let Longitude = "longitude"
+        static let MapString: String = "mapString"
+        static let MediaURL: String = "mediaURL"
+        static let Latitude: String = "latitude"
+        static let Longitude: String = "longitude"
+        static let CreatedAt: String = "createdAt"
+        static let UpdatedAt: String = "-updatedAt"
+        static let Error: String = "error"
+        static let Results: String = "results"
         
     }
     struct APIHeaderValues {

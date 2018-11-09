@@ -23,17 +23,18 @@ struct StudentInformation {
     let updatedAt: String?
     
     
-    init(_ dictionary: [String: AnyObject]) {
-        objectId = dictionary["objectId"] as? String
-        uniqueKey = dictionary["uniqueKey"] as? String
-        firstName = dictionary["firstName"] as? String
-        lastName = dictionary["lastName"] as? String
-        mapString = dictionary["mapString"] as? String
-        mediaURL = dictionary["mediaURL"] as? String
-        latitude = dictionary["latitude"] as? Double
-        longitude = dictionary["longitude"] as? Double
-        createdAt = dictionary["createdAt"] as? String
-        updatedAt = dictionary["updatedAt"] as? String
+    init?(dictionary: [String: AnyObject]) {
+        
+        self.objectId = dictionary[UdacityParseClient.JSONResponseKeys.ObjectId] as? String
+        self.uniqueKey = dictionary[UdacityParseClient.JSONResponseKeys.UniqueKey] as? String
+        self.firstName = dictionary[UdacityParseClient.JSONResponseKeys.FirstName] as? String
+        self.lastName = dictionary[UdacityParseClient.JSONResponseKeys.LastName] as? String
+        self.latitude = dictionary[UdacityParseClient.JSONResponseKeys.Latitude] as? Double
+        self.longitude = dictionary[UdacityParseClient.JSONResponseKeys.Longitude] as? Double
+        self.mapString = dictionary[UdacityParseClient.JSONResponseKeys.MapString] as? String
+        self.mediaURL = dictionary[UdacityParseClient.JSONResponseKeys.MediaURL] as? String
+        self.createdAt = dictionary[UdacityParseClient.JSONResponseKeys.CreatedAt] as? String
+        self.updatedAt = dictionary[UdacityParseClient.JSONResponseKeys.UpdatedAt] as? String
         
     }
     
@@ -55,7 +56,7 @@ struct StudentInformation {
         var students = [StudentInformation]()
         
         for result in results {
-            students.append(StudentInformation(result))
+            students.append(StudentInformation(dictionary: result)!)
         }
         
         return students
