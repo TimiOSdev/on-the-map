@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     
@@ -21,7 +21,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        _Email.delegate = self
+        _Password.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -32,12 +33,15 @@ class LoginViewController: UIViewController {
                 if success! {
                     self.loginComplete()
                 } else {
-                    self.displayError(error)
+                    if self._Email.text?.isEmpty == true {
+                        self.showAlert(problem: "Shoot", solution: "Email is empty")
+                    }
+                    if  self._Password.text?.isEmpty  == true {
+                        self.showAlert(problem: "Shoot", solution: "Password is empty")
+                    }
                 }
             }
         }
-    
-    
 }
     func loginComplete() {
         surpriseText.text = ""
@@ -45,11 +49,14 @@ class LoginViewController: UIViewController {
         present(controller, animated: true, completion: nil)
     }
     
-    
-    func displayError(_ errorString: String?) {
-        if let errorString = errorString {
-            surpriseText.text = "Credentials failed"
-        }
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
-
+    
+    public func showAlert(problem: String, solution: String)  {
+        let alert = UIAlertController(title: problem, message: solution, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
 }
