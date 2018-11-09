@@ -20,7 +20,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 10000
     var selectedPin:MKAnnotation?
-    var studentInformation: [StudentInformation] = arrayOfStudentLocations
     
     //MARK: CONNECTION OUTLETS
     
@@ -42,7 +41,7 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
             }
             
             for student in students {
-                StudentDataFarm.sharedInstance.arrayOfStudentLocations.append(student)
+        
                 performUIUpdatesOnMain {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = CLLocationCoordinate2D(latitude: student.latitude ?? 0, longitude: student.longitude ?? 0)
@@ -52,8 +51,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
                 }
             }
         }
-        
-        
         mapView.delegate = self
         locationManager.delegate = self
         configureLocationServices()
@@ -89,9 +86,8 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         return pinView
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-
-        }
+        guard let url = URL(string: (view.annotation?.subtitle)! ?? "https://www.google.com") else { return }
+        UIApplication.shared.open(url)
     }
 
 
