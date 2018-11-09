@@ -81,8 +81,6 @@ class PinMapController: UIViewController, UIGestureRecognizerDelegate {
         else {
             pinView!.annotation = annotation
         }
-        
-        
         return pinView
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

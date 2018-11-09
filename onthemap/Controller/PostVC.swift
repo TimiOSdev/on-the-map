@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PostVC: UIViewController, UIGestureRecognizerDelegate {
+class PostVC: UIViewController, UITextFieldDelegate {
     //Outlets
     @IBOutlet weak var shareURLTextOutlet: UITextField!
     
@@ -26,16 +26,13 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: ROLL TIDE
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         
         if let thisLat = self.lat {
-            print(thisLat)
             lat = thisLat
         }
         if let thisLong = self.long {
             long = thisLong
-            print(thisLong)
         }
         
         let annotation = MKPointAnnotation()
@@ -44,6 +41,7 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
         let region = MKCoordinateRegion(center: annotation.coordinate, span: span)
         mapView.setRegion(region, animated: true)
+        shareURLTextOutlet.delegate = self
         
     }
     
@@ -87,9 +85,11 @@ class PostVC: UIViewController, UIGestureRecognizerDelegate {
         }
         
     }
-    func dismissKeyboard() {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        view.endEditing(true)
+        shareURLTextOutlet.resignFirstResponder()
+        return true
     }
     
 }

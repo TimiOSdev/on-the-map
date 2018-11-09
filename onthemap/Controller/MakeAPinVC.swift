@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class MakeAPinVC: UIViewController {
+class MakeAPinVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var locationText: UITextField!
     
@@ -28,12 +28,19 @@ class MakeAPinVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         locationText.text = ""
+       
     }
     
+    override func viewDidLoad() {
+        locationText.delegate = self
+    }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         locationText.text = ""
         dismiss(animated: true, completion: nil)
+    }
+    @IBAction func returnPressed(sender: UITextField) {
+        self.view.endEditing(true)
     }
     
     @IBAction func findLocationButtonTapped(_ sender: UIButton) {
@@ -98,6 +105,7 @@ class MakeAPinVC: UIViewController {
             self.navigationController?.pushViewController(addLocationMapVC, animated: true)
         }
     }
+    
     func createSpinnerView() {
         let child = SpinnerViewController()
         
@@ -115,4 +123,10 @@ class MakeAPinVC: UIViewController {
             child.removeFromParent()
         }
     }
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+
 }
